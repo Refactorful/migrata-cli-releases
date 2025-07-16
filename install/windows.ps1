@@ -19,7 +19,7 @@ switch ($env:PROCESSOR_ARCHITECTURE) {
     }
 }
 
-$ASSET_NAME = "migrata-windows-$ARCH_SUFFIX.exe"
+$ASSET_NAME = "migrata-win-$ARCH_SUFFIX.exe"
 
 # Fetch latest release tag from GitHub API
 $VERSION = (Invoke-RestMethod -Uri "https://api.github.com/repos/$REPO/releases/latest").tag_name
