@@ -43,8 +43,7 @@ echo "Detected platform: $PLATFORM-$ARCH_SUFFIX"
 echo "Fetching latest release..."
 
 # Construct the download URL using the new format
-VERSION="v0.0.1"
-# VERSION=$(curl -s "https://api.github.com/repos/${REPO}/releases/latest" | sed -n 's/.*"tag_name": "\(.*\)",.*/\1/p')
+VERSION=$(curl -s "https://api.github.com/repos/${REPO}/releases/latest" | sed -n 's/.*"tag_name": "\(.*\)",.*/\1/p')
 DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/${ASSET_NAME}"
 
 echo "Downloading from $DOWNLOAD_URL"
