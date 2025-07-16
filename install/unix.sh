@@ -9,6 +9,12 @@ TMP_DIR="$(mktemp -d)"
 
 # Detect OS
 OS="$(uname | tr '[:upper:]' '[:lower:]')"
+
+# Remove older executables before installing
+if [ -f "$INSTALL_DIR/$BINARY_NAME" ]; then
+  echo "Removing old executable: $INSTALL_DIR/$BINARY_NAME"
+  sudo rm -f "$INSTALL_DIR/$BINARY_NAME"
+fi
 ARCH="$(uname -m)"
 
 case "$OS" in

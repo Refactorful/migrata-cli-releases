@@ -7,6 +7,12 @@ $BINARY_NAME = "migrata.exe"
 $TMP_DIR = Join-Path $env:TEMP "migrata_tmp"
 
 if (Test-Path $TMP_DIR) { Remove-Item $TMP_DIR -Recurse -Force }
+
+# Remove older executables before installing
+if (Test-Path "$INSTALL_DIR\$BINARY_NAME") {
+    Remove-Item "$INSTALL_DIR\$BINARY_NAME" -Force
+    Write-Host "Removed old executable: $INSTALL_DIR\$BINARY_NAME"
+}
 New-Item -ItemType Directory -Path $TMP_DIR | Out-Null
 
 # Detect architecture
