@@ -2,7 +2,7 @@
 $ErrorActionPreference = 'Stop'
 
 $REPO = "Refactorful/migrata-cli-releases"
-$INSTALL_DIR = "$env:ProgramFiles\migrata"
+$INSTALL_DIR = "$env:ProgramFiles\Migrata"
 $BINARY_NAME = "migrata.exe"
 $TMP_DIR = Join-Path $env:TEMP "migrata_tmp"
 
@@ -36,6 +36,12 @@ Copy-Item "$TMP_DIR\$ASSET_NAME" "$INSTALL_DIR\$BINARY_NAME" -Force
 
 # Add install dir to PATH for current session
 $env:PATH = "$INSTALL_DIR;" + $env:PATH
+# Persist install dir to user PATH
+$currentUserPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if ($currentUserPath -notlike "*$INSTALL_DIR*") {
+    [Environment]::SetEnvironmentVariable("Path", "$INSTALL_DIR;" + $currentUserPath, "User")
+    Write-Host "Added $INSTALL_DIR to user PATH. You may need to restart your shell for changes to take effect."
+}
 
 # Show version
 & "$INSTALL_DIR\$BINARY_NAME" --version
