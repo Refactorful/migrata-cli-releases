@@ -4,10 +4,10 @@
 
 ### Unix/macOS
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Refactorful/migrata-cli-releases/refs/heads/master/install/unix.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Refactorful/migrata-cli-releases/refs/heads/master/install.sh | sh
 ```
 
 ### Windows (PowerShell)
 ```powershell
-irm https://raw.githubusercontent.com/Refactorful/migrata-cli-releases/refs/heads/master/install/windows.ps1 | iex
+irm https://raw.githubusercontent.com/Refactorful/migrata-cli-releases/refs/heads/master/install.ps1 | iex
 ```
