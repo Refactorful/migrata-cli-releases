@@ -23,12 +23,19 @@ The Migrata CLI takes the stress out of database schema changes. It's a fully lo
 
 ### Key Features
 
-- **Schema Inspection** – Export complete database schemas (tables, indexes, constraints) to local files for source control tracking
-- **Intelligent Diffing** – Instantly compare live databases, SQL files, directories, or remote URLs
-- **Safe Execution** – Preview all changes before applying; every migration requires explicit manual approval
+- **Schema Inspection** – Export complete database schemas (tables, indexes, constraints, views, functions, partitions) to local files for source control tracking
+- **Intelligent Diffing** – Instantly compare live databases, SQL files, directories, or remote URLs with a full column lifecycle diff engine
+- **Risk Classification** – Every migration plan is labeled Safe, Warning, or Destructive so you can assess impact at a glance
+- **Impact Analysis** – See all downstream components (views, functions, etc.) that depend on modified entities before applying
+- **Schema Overview** – Side-by-side comparison of source vs target schemas with entity counts and change highlighting
+- **Safe Execution** – Preview all changes before applying with interactive approval. Auto-approve with `--approve` for CI/CD
+- **Safe Cast Migrations** – Multi-step column type changes with temporary columns, data conversion, and automatic reapplication of constraints and indexes
+- **Interactive Prompt Handling** – Safely remove enum values with guided prompts for valid replacements, applied transactionally
+- **Advisory Locks** – Concurrent migration protection via PostgreSQL advisory locks, enabled by default
+- **Dev-Database Validation** – Test migrations against an ephemeral Docker container with `--dev-image` to catch runtime errors early
+- **Table Partition Support** – Detect and compare partition tables; basic create, drop, and rename automated
 - **Fully Local** – Data and schemas never leave your machine; all operations happen within the CLI
 - **Plain SQL** – No lock-in. Work with standard SQL DDL files your team already understands
-- **Multi-Step Migrations** – Automatically handles risky operations like temporary columns and safe data remapping
 
 ## Quick Links
 
@@ -59,13 +66,7 @@ irm https://migrata.io/install.ps1 | iex
 
 ## Pricing
 
-The CLI is **free forever** for PostgreSQL. The free plan includes:
-- 1 user account
-- Unlimited devices
-- Full CLI access
-- Complete PostgreSQL support
-
-Future paid tiers may be introduced for additional database dialect support.
+The CLI is free to use. PostgreSQL is supported today, with more dialects on the way.
 
 ## What's Next?
 
