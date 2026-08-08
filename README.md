@@ -51,10 +51,18 @@ The Migrata CLI takes the stress out of database schema changes. It's a fully lo
 ```sh
 curl -fsSL https://migrata.io/install.sh | sh
 ```
+To install a specific version:
+```sh
+curl -fsSL https://migrata.io/install.sh | sh -s -- 1.0.0
+```
 
 ### Windows (PowerShell)
 ```powershell
 irm https://migrata.io/install.ps1 | iex
+```
+To install a specific version:
+```powershell
+$Version = "1.0.0"; irm https://migrata.io/install.ps1 | iex
 ```
 
 ## How It Works

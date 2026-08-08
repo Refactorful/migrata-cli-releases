@@ -1,5 +1,8 @@
 # Requires PowerShell 5+
-param([string]$Version)
+# Accept version from argument
+if (-not $Version -and $args.Count -gt 0) {
+    $Version = $args[0]
+}
 
 $ErrorActionPreference = 'Stop'
 
