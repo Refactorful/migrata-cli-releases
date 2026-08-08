@@ -20,8 +20,7 @@ switch ($env:PROCESSOR_ARCHITECTURE) {
     "AMD64" { $ARCH_SUFFIX = "x64" }
     "ARM64" { $ARCH_SUFFIX = "arm64" }
     default {
-        Write-Error "Unsupported architecture: $env:PROCESSOR_ARCHITECTURE"
-        exit 1
+        throw "Unsupported architecture: $env:PROCESSOR_ARCHITECTURE"
     }
 }
 
@@ -40,8 +39,7 @@ if ($Version) {
 try {
     Invoke-RestMethod -Uri "https://api.github.com/repos/$REPO/releases/tags/$VERSION" | Out-Null
 } catch {
-    Write-Host "Error: version $VERSION not found. Check available releases at https://github.com/$REPO/releases" -ForegroundColor Red
-    exit 1
+    throw "Error: version $VERSION not found. Check available releases at https://github.com/$REPO/releases"
 }
 
 $DOWNLOAD_URL = "https://github.com/$REPO/releases/download/$VERSION/$ASSET_NAME"
@@ -50,8 +48,7 @@ Write-Host "Downloading from $DOWNLOAD_URL"
 try {
     Invoke-WebRequest -Uri $DOWNLOAD_URL -OutFile "$TMP_DIR\$ASSET_NAME"
 } catch {
-    Write-Host "Error: failed to download $ASSET_NAME for version $VERSION. It may not exist for this release." -ForegroundColor Red
-    exit 1
+    throw "Error: failed to download $ASSET_NAME for version $VERSION. It may not exist for this release."
 }
 
 # Create install directory if it doesn't exist
